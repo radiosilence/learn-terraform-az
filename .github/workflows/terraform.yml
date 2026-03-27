@@ -12,10 +12,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@main
+        uses: actions/checkout@0c366fd6a839edf440554fa01a7085ccba70ac98 # main
 
       - name: Setup Terraform
-        uses: hashicorp/setup-terraform@main
+        uses: hashicorp/setup-terraform@b0cc02d63867e0daaa034a47e2cdf5d525a863a1 # main
         with:
           # terraform_version: 0.13.0:
           cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
@@ -38,7 +38,7 @@ jobs:
         run: terraform plan -no-color -input=false
         continue-on-error: true
 
-      - uses: actions/github-script@main
+      - uses: actions/github-script@450193c5abd4cdb17ba9f3ffcfe8f635c4bb6c2a # main
         if: github.event_name == 'pull_request'
         env:
           PLAN: "terraform\n${{ steps.plan.outputs.stdout }}"
